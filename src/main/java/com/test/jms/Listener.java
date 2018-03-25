@@ -22,8 +22,14 @@ public class Listener {
 		if(jsonMessage instanceof TextMessage) {
 			TextMessage textMessage = (TextMessage)jsonMessage;
 			messageData = textMessage.getText();
-			JSONObject soapDatainJsonObject = XML.toJSONObject(messageData);
-			System.out.println(soapDatainJsonObject);
+			// xml to json
+			/*JSONObject soapDatainJsonObject = XML.toJSONObject(messageData);
+			System.out.println(soapDatainJsonObject);*/
+			
+			// json to xml
+			JSONObject json = new JSONObject(messageData);
+			String xml = XML.toString(json);
+			System.out.println("xml :: "+xml);
 //            Map<String, String> map = new Gson().fromJson(messageData, Map.class);
             response  = "Hello " + messageData;
 		}
